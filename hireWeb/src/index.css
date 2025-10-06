@@ -116,7 +116,8 @@
   }
 
   .gradient-title {
-    @apply gradient text-transparent bg-clip-text;
+    /* expanded to avoid using an undefined `gradient` utility */
+    @apply bg-gradient-to-br from-gray-500 via-gray-200 to-white text-transparent bg-clip-text;
   }
 }
 
