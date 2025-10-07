@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from './ui/button'
-import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from '@clerk/clerk-react'
+import { SignedIn, SignedOut, SignIn, SignInButton, UserButton, useUser } from '@clerk/clerk-react'
 import { PenBox } from 'lucide-react'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
@@ -11,15 +11,15 @@ import { Heart } from 'lucide-react'
 
 export const Header = () => {
   const [showSignIn, setshowSignIn] = useState(false);
-
-  const [search,setSearch] = useSearchParams();
+  const { user } = useUser();
+  const [search, setSearch] = useSearchParams();
 
   useEffect(() => {
     if (search.get('sign-in')) {
       setshowSignIn(true);
     }
   }, [search])
-  
+
 
   const handleOverLayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -39,32 +39,36 @@ export const Header = () => {
             <Button variant={"outline"} onClick={() => setshowSignIn(true)}>Login</Button>
           </SignedOut>
           <SignedIn>
-            {/* add a condition here  */}
-            <Button variant={'destructive'} className={`rounded-full`}>
-              <PenBox size={20} className='mr-2' />
-              Post a job
-            </Button>
-            <Link to={'/post-job'}></Link>
-            <UserButton 
+            {user?.unsafeMetadata?.role === 'recruiter' && (
+
+              <Link to={'/post-job'}>
+                <Button variant={'destructive'} className={`rounded-full`}>
+                  <PenBox size={20} className='mr-2' />
+                  Post a job
+                </Button>
+              </Link>
+              
+            )}
+            <UserButton
               appearance={{
-                elements:{
+                elements: {
                   avatarBox: {
                     width: '40px',
                     height: '40px'
                   }
                 }
-              }} 
+              }}
             >
-            <UserButton.MenuItems>
-              <UserButton.Link
-              label='My Jobs'
-              labelIcon={<BriefcaseBusiness size={15}/>}
-              href='/my-jobs' />
-              <UserButton.Link
-              label='Saved Jobs'
-              labelIcon={<Heart size={15}/>}
-              href='/saved-job' />
-            </UserButton.MenuItems>
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label='My Jobs'
+                  labelIcon={<BriefcaseBusiness size={15} />}
+                  href='/my-jobs' />
+                <UserButton.Link
+                  label='Saved Jobs'
+                  labelIcon={<Heart size={15} />}
+                  href='/saved-job' />
+              </UserButton.MenuItems>
             </UserButton>
           </SignedIn>
         </div>
