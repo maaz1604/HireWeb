@@ -31,7 +31,7 @@ export const Header = () => {
     <>
       <nav className='py-4 flex justify-between items-center'>
         <Link>
-          <img src="/logo2.png" alt="logo image" className='h-20' />
+          <img src="/logo2.png" alt="logo image" className='h-32 w-52' />
         </Link>
 
         <div className='flex gap-8'>
