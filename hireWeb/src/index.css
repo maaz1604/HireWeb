@@ -130,8 +130,18 @@
   }
 }
 
-.wmde-markdown ul{
+/* Make @uiw/react-md-editor preview follow the app theme */
+.wmde-markdown {
+  background-color: transparent !important; /* remove default white panel */
+  color: var(--foreground);
+}
+
+.wmde-markdown p,
+.wmde-markdown li {
+  color: var(--foreground);
+}
+
+.wmde-markdown ul {
   list-style-type: disc;
   padding-left: 25px;
-  color: #D7D3BF;
 }
