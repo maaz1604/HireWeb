@@ -7,11 +7,11 @@ const AppLayout = () => {
     <>
       <div>
         <div className='grid-background'></div>
-        <main className='min-h-screen container pr-8 pl-8'>
+        <main className='min-h-screen h-1 container pr-8 pl-8'>
           <Header />
           <Outlet />
         </main>
-        <footer className=' p-10 text-center bg-gray-800 mt-10'>Built by Maaz Amir</footer>
+        <footer className=' p-5 text-center bg-gray-800 mt-10'>Built by Maaz Amir</footer>
       </div>
     </>
   )
