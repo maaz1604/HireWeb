@@ -1,0 +1,54 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle with Gradient -->
+  <circle cx="256" cy="256" r="256" fill="url(#gradient)"/>
+  
+  <!-- Briefcase Icon -->
+  <g transform="translate(140, 180)">
+    <!-- Briefcase Body -->
+    <rect x="20" y="40" width="200" height="120" rx="12" fill="white" opacity="0.95"/>
+    
+    <!-- Briefcase Handle -->
+    <path d="M 80 40 L 80 20 C 80 10 85 5 95 5 L 145 5 C 155 5 160 10 160 20 L 160 40" 
+          stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/>
+    
+    <!-- Briefcase Lock/Detail -->
+    <rect x="110" y="85" width="20" height="30" rx="4" fill="#8B5CF6" opacity="0.8"/>
+    <circle cx="120" cy="95" r="5" fill="white"/>
+    
+    <!-- Horizontal Line Detail -->
+    <line x1="30" y1="90" x2="90" y2="90" stroke="#8B5CF6" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+    <line x1="150" y1="90" x2="210" y2="90" stroke="#8B5CF6" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  </g>
+  
+  <!-- Connection Nodes (Network/Web Theme) -->
+  <!-- Top Left Node -->
+  <circle cx="100" cy="120" r="18" fill="white" opacity="0.9"/>
+  <circle cx="100" cy="120" r="10" fill="#8B5CF6"/>
+  
+  <!-- Top Right Node -->
+  <circle cx="412" cy="120" r="18" fill="white" opacity="0.9"/>
+  <circle cx="412" cy="120" r="10" fill="#8B5CF6"/>
+  
+  <!-- Bottom Left Node -->
+  <circle cx="100" cy="392" r="18" fill="white" opacity="0.9"/>
+  <circle cx="100" cy="392" r="10" fill="#8B5CF6"/>
+  
+  <!-- Bottom Right Node -->
+  <circle cx="412" cy="392" r="18" fill="white" opacity="0.9"/>
+  <circle cx="412" cy="392" r="10" fill="#8B5CF6"/>
+  
+  <!-- Connection Lines -->
+  <line x1="100" y1="120" x2="160" y2="180" stroke="white" stroke-width="3" opacity="0.4" stroke-dasharray="5,5"/>
+  <line x1="412" y1="120" x2="340" y2="180" stroke="white" stroke-width="3" opacity="0.4" stroke-dasharray="5,5"/>
+  <line x1="100" y1="392" x2="160" y2="340" stroke="white" stroke-width="3" opacity="0.4" stroke-dasharray="5,5"/>
+  <line x1="412" y1="392" x2="340" y2="340" stroke="white" stroke-width="3" opacity="0.4" stroke-dasharray="5,5"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A78BFA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
