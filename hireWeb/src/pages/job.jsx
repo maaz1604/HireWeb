@@ -20,6 +20,7 @@ const JobPage = () => {
   const { id } = useParams();
 
   const {
+    // eslint-disable-next-line no-unused-vars
     loading: loadingjob,
     data: job,
     fn: fnjob,

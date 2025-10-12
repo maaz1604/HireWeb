@@ -7,9 +7,11 @@ import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Heart } from 'lucide-react';
 import useFetch from '@/hooks/use-fetch';
-import { getJobs, saveJob } from '@/api/apiJobs';
+// eslint-disable-next-line no-unused-vars
+import { deleteJob, getJobs, saveJob } from '@/api/apiJobs';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { BarLoader } from 'react-spinners';
 
 const JobCard = ({
     //knowing the below parameters are very important or interview
@@ -17,6 +19,7 @@ const JobCard = ({
     isMyjob = false,
     savedInit = false,
     onJobSaved = () => { },
+    onJobAction = () => { },
 }) => {
 
     const [saved, setSaved] = useState(savedInit);
@@ -39,6 +42,15 @@ const JobCard = ({
         onJobSaved();
     };
 
+    const {loading:loadingDeleteJob,fn:fnDeleteJob} = useFetch(deleteJob,{
+        job_id:job.id
+    });
+
+    const handleDeleteJob = async() => {
+        await fnDeleteJob();
+        onJobAction();
+    }
+
     useEffect(() => {
         if (savedjobs !== undefined) {
             setSaved(savedjobs?.length > 0)
@@ -47,10 +59,13 @@ const JobCard = ({
 
     return (
         <Card className={`flex flex-col`}>
+            {loadingDeleteJob && (
+                <BarLoader className='mt-4' width={'100%'} color='#84cdeeu' />
+            )}
             <CardHeader>
                 <CardTitle className={`flex justify-between font-bold`}>
                     {job.title}
-                    {isMyjob && <Trash2Icon fill='red' size={18} className=' text-red-500 cursor-pointer' />}
+                    {isMyjob && <Trash2Icon onClick={handleDeleteJob} fill='red' size={18} className=' text-red-500 cursor-pointer' />}
                 </CardTitle>
             </CardHeader>
 
