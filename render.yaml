@@ -1,0 +1,18 @@
+# Render configuration for deployment
+# https://render.com/docs/deploy-vite
+
+# Build settings
+buildCommand: cd hireWeb && npm install && npm run build:render
+publishDirectory: hireWeb/dist
+
+# Environment variables (set these in Render dashboard)
+# VITE_SUPABASE_URL
+# VITE_SUPABASE_ANON_KEY
+# VITE_CLERK_PUBLISHABLE_KEY
+
+# Service settings
+envVars:
+  - key: NODE_VERSION
+    value: 18
+  - key: NODE_ENV
+    value: production

@@ -12,4 +12,22 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Optimize build for memory constraints
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split vendor chunks to reduce memory usage
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['@radix-ui/react-select', '@radix-ui/react-dialog', '@radix-ui/react-accordion'],
+          'clerk': ['@clerk/clerk-react'],
+          'supabase': ['@supabase/supabase-js'],
+        },
+      },
+    },
+    // Reduce terser compression to save memory
+    minify: 'esbuild',
+    sourcemap: false,
+  },
 })

@@ -106,13 +106,26 @@ pnpm install
 
 3. **Set up environment variables:**
 
-Create a `.env` file in the `hireWeb` directory with the following variables:
+Create a `.env` file in the `hireWeb` directory by copying `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+Then update the `.env` file with your credentials:
 
 ```env
 VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+
+# For Development: Use Clerk test key (pk_test_...)
+# For Production: Use Clerk live key (pk_live_...)
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_clerk_test_key
 ```
+
+**Important for Production:**
+- For deployment, replace the Clerk test key (`pk_test_...`) with your live publishable key (`pk_live_...`)
+- Never commit your `.env` file to version control (it's already in `.gitignore`)
 
 4. **Set up Supabase:**
 
@@ -144,6 +157,51 @@ The application will be available at `http://localhost:5173`
 - `pnpm build` - Build for production
 - `pnpm preview` - Preview production build
 - `pnpm lint` - Run ESLint
+
+## Deployment
+
+### Environment Variables for Production
+
+When deploying to production (Vercel, Netlify, etc.), make sure to set these environment variables:
+
+```env
+VITE_SUPABASE_URL=your_production_supabase_url
+VITE_SUPABASE_ANON_KEY=your_production_supabase_anon_key
+VITE_CLERK_PUBLISHABLE_KEY=pk_live_your_clerk_live_key  # Use LIVE key!
+```
+
+**⚠️ Important:** 
+- Use Clerk's **live publishable key** (`pk_live_...`) for production
+- Test keys (`pk_test_...`) should only be used in development
+- Configure environment variables in your hosting platform's dashboard
+
+### Build Command
+```bash
+pnpm build
+```
+
+### Deploy to Render
+
+**For Render deployments with memory constraints:**
+
+1. Set build command: `cd hireWeb && npm install && npm run build:render`
+2. Set publish directory: `hireWeb/dist`
+3. Add environment variables in Render dashboard:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+   - `VITE_CLERK_PUBLISHABLE_KEY` (use live key!)
+   - `NODE_VERSION=18`
+
+**Memory optimization applied:**
+- Chunk splitting for vendor libraries
+- esbuild minification (faster, less memory)
+- Disabled source maps
+- Manual chunk optimization
+
+### Deploy to Vercel
+```bash
+vercel --prod
+```
 
 ## Key Features Implementation
 
