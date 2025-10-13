@@ -199,9 +199,25 @@ pnpm build
 - Manual chunk optimization
 
 ### Deploy to Vercel
+
+**Configuration for Vercel:**
+
+1. **Root Directory:** Set to `hireWeb`
+2. **Build Command:** `npm run build` (or `pnpm build`)
+3. **Output Directory:** `dist`
+4. **Install Command:** `npm install` (or `pnpm install`)
+
+**Add Environment Variables in Vercel Dashboard:**
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+- `VITE_CLERK_PUBLISHABLE_KEY` (use `pk_live_...` for production!)
+
+**Deploy via CLI:**
 ```bash
 vercel --prod
 ```
+
+**Important:** The `vercel.json` file is already configured to handle client-side routing (React Router) properly, preventing 404 errors on page refresh.
 
 ## Key Features Implementation
 
